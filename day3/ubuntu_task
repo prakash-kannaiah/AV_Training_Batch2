@@ -1,139 +1,179 @@
-✅ Ubuntu Training Handbook – Part 1 (Modules 1–10)
+# ✅ Ubuntu Training Handbook – Part 1 (Modules 1–10)
 
-🔰 Module 1: Introduction to Ubuntu
+This handbook covers foundational Ubuntu Linux commands and system operations for beginners.
+
+---
+
+# 🔰 Module 1: Introduction to Ubuntu
+
+Basic system identification commands:
+
+```bash
 whoami       # Show current user
 hostname     # Show system hostname
 uname -a     # Show OS and kernel info
+```
 
+---
 
-🧰 Module 2: Basic File Commands
+# 🧰 Module 2: Basic File Commands
+
+## 📁 Creating & Managing Files/Folders
+
+```bash
 mkdir test_folder     # Create new folder
 cd test_folder        # Navigate into folder
 touch file1.txt       # Create an empty file
 ls -l                 # List files with details
-la		# list all files (incl hidden files)
+ls -a                 # List all files (including hidden files)
 rm file1.txt          # Delete a file
 cd ..                 # Go up one level
 rmdir test_folder     # Remove empty folder
+```
 
+---
 
-Command
-Description
-Example
-ls -lh filename
-Shows file size in human-readable format (KB, MB)
-ls -lh myfile.txt
-du -h filename
-Shows disk usage of a file (human-readable)
-du -h cron_test.log
-du -sh filename
-Shows only the total size (suppress file name listing)
-du -sh myfile.txt
-stat filename
-Detailed file info including size in bytes
-stat myfile.txt
-stat -c%s filename
-Outputs only the file size in bytes
-stat -c%s myfile.txt
-du -sh *
-Shows sizes of all files and folders in the current directory
-du -sh *
-du -sh /path/to/folder
-Shows total size of a specific folder
-du -sh ~/Downloads
-find . -type f -exec du -h {} +
-Lists all file sizes recursively
-find . -type f -exec du -h {} +
-ls -lhS
-Lists files in the current directory sorted by size (descending)
-ls -lhS
-`du -a
-sort -n -r
-head -n 10`
+## 📊 File Size & Disk Usage Commands
 
+| Command | Description | Example |
+|----------|-------------|----------|
+| `ls -lh filename` | Shows file size in human-readable format (KB, MB) | `ls -lh myfile.txt` |
+| `du -h filename` | Shows disk usage of a file | `du -h cron_test.log` |
+| `du -sh filename` | Shows only total size | `du -sh myfile.txt` |
+| `stat filename` | Detailed file info (size in bytes) | `stat myfile.txt` |
+| `stat -c%s filename` | Outputs only file size in bytes | `stat -c%s myfile.txt` |
+| `du -sh *` | Shows sizes of all files/folders in directory | `du -sh *` |
+| `du -sh /path/to/folder` | Shows total size of folder | `du -sh ~/Downloads` |
+| `find . -type f -exec du -h {} +` | Lists file sizes recursively | Same |
+| `ls -lhS` | Lists files sorted by size (descending) | `ls -lhS` |
 
+### 🔥 Top 10 Largest Files
 
-📂 Module 3: File Viewing and Editing
+```bash
+du -a | sort -n -r | head -n 10
+```
+
+---
+
+# 📂 Module 3: File Viewing and Editing
+
+```bash
 echo "Ubuntu Training" > sample.txt   # Create file with text
-cat sample.txt                       # View file content
-nano sample.txt                      # Edit file using nano
+cat sample.txt                        # View file content
+nano sample.txt                       # Edit file using nano
+```
 
+---
 
-📦 Module 4: Package Management
+# 📦 Module 4: Package Management
+
+```bash
 sudo apt update                      # Update package list
 sudo apt upgrade                     # Upgrade installed packages
-sudo apt install cowsay              # Install cowsay app
-cowsay "Hello, Ubuntu!"              # Run cowsay (or) flag -f → cowsay -f moose “hi”
+sudo apt install cowsay              # Install cowsay
+cowsay "Hello, Ubuntu!"              # Run cowsay
+cowsay -f moose "hi"                 # Run cowsay with different character
 sudo apt remove cowsay               # Uninstall cowsay
+```
 
+---
 
-👥 Module 5: User Management
-sudo adduser testuser               # Create a new users
-su - testuser		#substitute user
-quit
+# 👥 Module 5: User Management
+
+```bash
+sudo adduser testuser               # Create new user
+su - testuser                       # Switch to user
+exit                                # Exit from user
 sudo usermod -aG sudo testuser      # Add user to sudo group
 sudo deluser testuser               # Delete user
+```
 
+---
 
-🔐 Module 6: File Permissions
+# 🔐 Module 6: File Permissions
+
+```bash
 touch file.txt                      # Create a file
 ls -l file.txt                      # Show permissions
-Ls -lh file.txt		#human readable in bytes
+ls -lh file.txt                     # Human-readable file size
 chmod 755 file.txt                  # Change permissions
 ls -l file.txt                      # Confirm change
+```
 
-Ex: 	-rw-rw-r-- 1 testuser testuser 0 Jul 14 19:57 file.txt
-rw- → Owner: can read and write
-	r-- → Group: can read
-	r-- → Others: can read
+Example permission:
 
-Octal
-Symbolic
-Meaning
-7
-rwx
-Read, write, execute
-6
-rw-
-Read, write
-5
-r-x
-Read, execute
-4
-r--
-Read only
-0
+```
+-rw-rw-r-- 1 testuser testuser 0 Jul 14 19:57 file.txt
+```
+
+- `rw-` → Owner: read and write  
+- `rw-` → Group: read and write  
+- `r--` → Others: read  
+
+## 🔢 Permission Reference Table
+
+| Octal | Symbolic | Meaning |
+|--------|----------|---------|
+| 7 | rwx | Read, write, execute |
+| 6 | rw- | Read, write |
+| 5 | r-x | Read, execute |
+| 4 | r-- | Read only |
+| 0 | --- | No permissions |
+
+Examples:
+
+```bash
+chmod 755 file.txt   # rwxr-xr-x
+chmod 600 file.txt   # 100% private
+```
+
 ---
-No permissions
 
-Example:
- chmod 755 file → rwxr-xr-x (or) 600 is 100% private
+# 🌐 Module 7: Networking Basics
 
-🌐 Module 7: Networking Basics
+```bash
 ip a                                # Show IP address info
 ping -c 4 google.com                # Test internet connection
+```
 
+---
 
-🧪 Module 8: Bash Scripting Intro
+# 🧪 Module 8: Bash Scripting Introduction
+
 Create the script:
+
+```bash
 nano hello.sh
+```
 
 Paste into file:
+
+```bash
 #!/bin/bash
 echo "Welcome to Ubuntu!"
+```
 
-Then run:
-chmod +x hello.sh                  # Make script executable
+Run the script:
+
+```bash
+chmod +x hello.sh                  # Make executable
 ./hello.sh                         # Execute script
+```
 
+---
 
-🗂️ Module 9: System Monitoring
+# 🗂️ Module 9: System Monitoring
+
+```bash
 top                                 # Live system monitor
 htop                                # Advanced process viewer
 free -h                             # Check memory usage
 df -h                               # Disk space usage
+```
 
-Ex:
+### Process Management Example
+
+```bash
 # Create script
 echo -e '#!/bin/bash\nwhile true; do echo "Looping..."; sleep 2; done' > loop.sh
 chmod +x loop.sh
@@ -144,17 +184,33 @@ chmod +x loop.sh
 # Find PID
 pgrep -f loop.sh
 
-# Kill process by PID
+# Kill process
 kill PID
+```
 
-(If htop is not installed: sudo apt install htop)
+If htop is not installed:
 
-🔍 Module 10: Searching and Finding Files
+```bash
+sudo apt install htop
+```
+
+---
+
+# 🔍 Module 10: Searching and Finding Files
+
+```bash
 sudo updatedb                      # Update locate database
-locate bash                        # Find files containing 'bash'
-find /etc -name "*.conf"           # Find all .conf files in /etc
-grep 'root' /etc/passwd            # Search for 'root' in passwd
+locate bash                        # Search for files containing 'bash'
+find /etc -name "*.conf"           # Find .conf files in /etc
+grep 'root' /etc/passwd            # Search inside file
+```
 
-If not available “sudo apt install plocate”
+If locate is not available:
 
+```bash
+sudo apt install plocate
+```
 
+---
+
+✅ End of Ubuntu Training Handbook – Part 1
