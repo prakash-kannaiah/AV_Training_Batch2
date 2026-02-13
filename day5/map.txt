@@ -7,11 +7,14 @@ https://drive.google.com/file/d/1thca65I_b6dXU-9k_peObui5qPVP8Spn/view?usp=shari
 
 #error:
 
-sudo apt install ros-humble-perception-pcl \
+sudo apt install ros-humble-pcl-conversions \
+                 ros-humble-perception-pcl \
                  ros-humble-pcl-msgs \
                  ros-humble-vision-opencv \
-                 ros-humble-xacro
+                 ros-humble-xacro 
 
 # Add GTSAM-PPA
 sudo add-apt-repository ppa:borglab/gtsam-release-4.1
 sudo apt install libgtsam-dev libgtsam-unstable-dev
+
+sudo apt-get install ros-humble-pcl-conversions
