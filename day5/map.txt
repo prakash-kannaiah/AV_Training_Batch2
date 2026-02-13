@@ -17,4 +17,3 @@ sudo apt install ros-humble-pcl-conversions \
 sudo add-apt-repository ppa:borglab/gtsam-release-4.1
 sudo apt install libgtsam-dev libgtsam-unstable-dev
 
-sudo apt-get install ros-humble-pcl-conversions
